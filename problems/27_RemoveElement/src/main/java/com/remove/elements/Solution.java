@@ -1,3 +1,4 @@
+package com.remove.elements;
 class Solution {
 
     public int removeElement(int[] nums, int val) {
