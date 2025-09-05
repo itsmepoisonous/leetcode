@@ -5,18 +5,22 @@ import java.util.Map;
 
 class Solution {
     public int majorityElement(int[] nums) {
+        int arrLength=nums.length;
         Map<Integer,Integer> majorityMap=new HashMap<>();
         majorityMap.put(nums[0],1);
-        for(int i=0;i< nums.length;i++){
+        for(int i=1;i< arrLength;i++){
         if(majorityMap.containsKey(nums[i])){
             int a=majorityMap.get(nums[i]);
-            majorityMap.put(nums[i],a+1);
-            if(++a>=nums.length/2)
-                return nums[i];
+            a+=1;
+            majorityMap.put(nums[i],a);
         }
         else majorityMap.put(nums[i],1);
-
         }
-        return nums[0];
+        for (Map.Entry<Integer, Integer> entry : majorityMap.entrySet()) {
+            if (entry.getValue() > arrLength / 2) {
+                return entry.getKey();
+            }
+        }
+        return -1;
     }
 }
